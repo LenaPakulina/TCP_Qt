@@ -7,6 +7,8 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+class QTcpSocket;
+
 class MainWindow : public QMainWindow
 {
 	Q_OBJECT
@@ -17,5 +19,13 @@ public:
 
 private:
 	Ui::MainWindow *ui;
+	QTcpSocket			*m_socket;
+	QByteArray			m_data;
+	qint16				m_nextBlockSize;
+
+public slots:
+	void	slotSentToServer();
+	void	slotConnectionHandler();
+	void	slotReadyRead();
 };
 #endif // MAINWINDOW_H
